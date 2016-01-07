@@ -1,0 +1,137 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://capgemini.com" target="_blank">Capgemini</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active" ng-show="vm.currentUser">
+                    <a href="javascript:void(0);">Welcome {{vm.currentUser.firstName}}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-show="vm.currentUser">
+                <li><a href="javascript:void(0);" ng-click="vm.logout()">Logout</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<span>User >> Home</span>
+<hr>
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <button data-toggle="modal" data-target="#myModal" type="button" class="btn btn-sm btn-primary"
+                    ng-click="vm.new()">New User
+            </button>
+            <hr>
+        </div>
+        <div ui-grid="vm.gridOptions"></div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{vm.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" ng-submit="vm.update(vm.user)" name="form">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            FirstName:
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input ng-model="vm.user.firstName" class="form-control" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            LastName:
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input ng-model="vm.user.lastName" class="form-control" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            Email ID:
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input ng-model="vm.user.emailId" class="form-control" type="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            Phone Number:
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input ng-model="vm.user.phone" class="form-control" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            City:
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input ng-model="vm.user.city" class="form-control" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            State:
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input ng-model="vm.user.state" class="form-control" type="text" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="pull-right">
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                                <button type="submit" ng-if="vm.title=='New'" class="btn btn-success"
+                                        ng-disabled="form.$invalid">Save
+                                </button>
+                                <button type="submit" ng-if="vm.title!='New'" class="btn btn-success"
+                                        ng-disabled="form.$invalid">Update
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="alert alert-success" ng-show="vm.successMessage">
+                    <span class="glyphicon-ok glyphicon"></span>
+                    {{ vm.successMessage }}
+                </div>
+                <div class="alert alert-danger" ng-show="vm.errorMessage">
+                    <span class="glyphicon glyphicon-alert"></span>
+                    {{ vm.errorMessage }}
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+
+    </div>
+</div>
